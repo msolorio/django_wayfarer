@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .profiles.models import Profile
 
 def signup(request):
     # if form submited on signup page
@@ -16,10 +16,9 @@ def signup(request):
             return redirect('cities_index') # redirect to cities/
     
     # if navigate to signup page
-    else:
-        form = UserCreationForm()
-        # display form for signup
-        return render(request, 'registration/signup.html', { 'form': form })
+    form = UserCreationForm()
+    # display form for signup
+    return render(request, 'registration/signup.html', { 'form': form })
 
 
 def index(request):
