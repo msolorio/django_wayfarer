@@ -1,25 +1,31 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
   <title>Wayfarer - {% block title %}{% endblock %}</title>
 </head>
 <body>
-  <header>
-    <a href="{% url 'index' %}"><h1>Wayfarer</h1></a>
+  <header class="header">
+    <a class="title_a" href="{% url 'index' %}">
+      <h1 class="title_h1">Wayfarer</h1>
+    </a>
 
-    <nav>
-      <ul>
-          <li><a href="/about">About</a></li>
+    <nav class="nav">
+      <ul class="nav_ul">
+          <li class="nav_li"><a class="nav_a" href="/about">About</a></li>
         {% if not user.is_authenticated %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Signup</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'login' %}">Login</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'signup' %}">Signup</a></li>
         {% else %}
-          <li><a href="{% url 'cities_index' %}">Cities</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'cities_index' %}">Cities</a></li>
           {% comment %} /profile/profile_id {% endcomment %}
-          <li><a href="{% url 'profiles_detail' %}">Profile</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'profiles_detail' %}">Profile</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'logout' %}">Log Out</a></li>
         {% endif %}
       </ul>
     </nav>
