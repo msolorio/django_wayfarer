@@ -5,5 +5,19 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Hello from cities index</h1>
+  <aside class="citiesSidebar">
+    <h2 class="citiesSidebar_heading">Cities</h2>
+    {% for city in cities %}
+      <a href="{% url 'cities_detail' city.id %}">
+        <div class="citiesSidebar_card">
+          <h3 class="citiesSidebar_cityname">{{city.name}}</h3>
+        </div>
+      </a>
+    {% endfor %}
+  </aside>
+
+  <main class="selectedCity_main">
+    Please select a city
+  </main>
+
 {% endblock %}
