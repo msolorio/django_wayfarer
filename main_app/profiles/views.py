@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-def detail(request, profile_id):
+@login_required
+def detail(request):
     return render(request, 'profiles/detail.html')
