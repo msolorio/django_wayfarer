@@ -7,13 +7,15 @@
 {% block content %}
   <aside class="citiesSidebar">
     <h2 class="citiesSidebar_heading">Cities</h2>
-    {% for city in cities %}
-      <a href="{% url 'cities_detail' city.id %}">
-        <div class="citiesSidebar_card">
-          <h3 class="citiesSidebar_cityname">{{city.name}}</h3>
-        </div>
-      </a>
-    {% endfor %}
+    <div class="citiesSidebar_cities">
+      {% for city in cities %}
+        <a class="citiesSidebar_a" href="{% url 'cities_detail' city.id %}">
+          <div class="citiesSidebar_card">
+            <h3 class="citiesSidebar_cityname">{{city.name}}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </aside>
 
   <main class="selectedCity_main">
