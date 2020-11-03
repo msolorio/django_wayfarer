@@ -5,23 +5,35 @@
 {% endblock %}
 
 {% block content %}
-  <p>Hello {{ user.username }}</p>
-
   <aside class="citiesSidebar">
     <h2 class="citiesSidebar_heading">Cities</h2>
-    {% for city in cities %}
-      <a href="{% url 'cities_detail' city.id %}">
-        <div class="citiesSidebar_card">
-          <h3 class="citiesSidebar_cityname">{{city.name}}</h3>
-        </div>
-      </a>
-    {% endfor %}
+    <div class="citiesSidebar_cities">
+      {% for city in cities %}
+        <a class="citiesSidebar_a" href="{% url 'cities_detail' city.id %}">
+          <div class="citiesSidebar_card">
+            <h3 class="citiesSidebar_cityname">{{city.name}}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </aside>
 
   <main class="selectedCity_main">
     <h2 class="selectedCity_heading">
-      {{ selected_city.name }}, {{ selected_city.country }}
+      {{ selected_city_fullname }}
     </h2>
+    {% if selected_city.photo_url %}
+      <img
+        class="selectedCity_img"
+        src="{{ selected_city.photo_url }}"
+        alt="{{ selected_city_fullname }}"
+      />
+    {% endif %}
+    <form class="selectedCity_postForm" action="/posts" method="POST">
+      {% csrf_token %}
+      {% comment %} pass in post from controller {% endcomment %}
+      <input type="submit" value="Add Post">
+    </form>
   </main>
 
 {% endblock %}

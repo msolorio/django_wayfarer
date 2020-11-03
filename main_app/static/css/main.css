@@ -16,8 +16,12 @@ body {
 /* HEADER *****************************************************/
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 30px;
+}
+
+.title_a {
+  display: none;
 }
 
 .nav_ul {
@@ -31,5 +35,42 @@ body {
 
 .nav_a {
   text-decoration: none;
+}
+/**************************************************************/
+
+/* CITIES *****************************************************/
+.citiesSidebar_cities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.citiesSidebar_a {
+  border: 1px solid #333;
+  margin: 10px 3px 0;
+  padding: 10px;
+  width: 48%;
+}
+
+.citiesSidebar_card {
+  display: flex;
+  justify-content: center;
+}
+
+.selectedCity_main {
+  border: 1px solid #333;
+  margin: 20px 3px 0;
+  width: 100%;
+  min-height: 300px;
+}
+
+.selectedCity_heading {
+  display: flex;
+  justify-content: center;
+}
+
+.selectedCity_postForm {
+  border: 1px solid #333;
+  padding: 10px;
 }
 /**************************************************************/

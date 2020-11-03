@@ -24,4 +24,5 @@ def detail(request, city_id):
         'profile': profile,
         'cities': cities,
         'selected_city': selected_city,
+        'selected_city_fullname': f'{selected_city.name}, {selected_city.country}'
     })
