@@ -22,6 +22,18 @@
     <h2 class="selectedCity_heading">
       {{ selected_city_fullname }}
     </h2>
+    
+    {% if profile.city_id != selected_city.id %}
+      <section>
+        <form action="{% url 'update_profile_city' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="selected_city_id" value="{{ selected_city.id }}">
+          <input type="hidden" name="profile_id" value="{{ profile.id }}">
+          <input type="submit" value="Make Current City">
+        </form>
+      </section>
+    {% endif %}
+
     {% if selected_city.photo_url %}
       <img
         class="selectedCity_img"
@@ -29,11 +41,33 @@
         alt="{{ selected_city_fullname }}"
       />
     {% endif %}
-    <form class="selectedCity_postForm" action="/posts" method="POST">
-      {% csrf_token %}
-      {% comment %} pass in post from controller {% endcomment %}
-      <input type="submit" value="Add Post">
-    </form>
+
+    {% if profile.city_id == selected_city.id %}
+      <section id="create-post-container" class="createPost">
+        <form class="createPost_form" action="{% url 'create_post' %}" method="POST">
+          {% csrf_token %}
+          <h2>Create Your Post</h2>
+          {{ post_form.as_p }}
+          <input type="hidden" name="author" value={{ profile.id }}>
+          <input type="hidden" name="city" value={{ selected_city.id }}>
+          <input class="createPost_submit" type="submit" value="Add Post">
+        </form>
+        <button class="createPost_close" id="close-create-post">Close</button>
+      </section>
+      <button class="createPost_open" id="open-create-post">Create a Post</button>
+    {% endif %}
+
+    <section class="posts">
+      <h2 class="posts_heading">Posts</h2>
+      <ul class="posts_list">
+        {% for post in posts %}
+          <li class="posts_post">
+            <h3 class="posts_postTitle">{{ post.title }}</h3>
+            <p class="posts_postBody">{{ post.body }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
   </main>
 
 {% endblock %}
