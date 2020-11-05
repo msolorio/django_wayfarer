@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  post - [actual post name]
+  {{ post.title }}
 {% endblock %}
 
 {% block content %}
-  <h1>[actual post name]</h1>
+  <section class="post">
+    <h1 class="post_title">{{ post.title }}</h1>
+    <a href="{% url 'cities_detail' post.city.id %}">
+      <p class="post_city">{{ post.city.getFullName }}</p>
+    </a>
+    <a href="{% url 'profiles_detail' post.author.id %}">
+      <p class="post_author">Author: {{ post.author.user.username }}</p>
+    </a>
+    <p class="post_pubdate">Published: {{ post.pub_date }}</p>
+    <p class="post_body">{{ post.body }}</p>
+  </section>
 {% endblock %}

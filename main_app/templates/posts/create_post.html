@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Add Post
+{% endblock %}
+
+{% block content %}
+  <section class="createPost">
+    <h2 class="createPost_heading">Add a Post for {{ selected_city.getFullName }}</h2>
+
+    <form class="createPost_form" action="{% url 'add_post' selected_city.id %}" method="POST">
+      {% csrf_token %}
+      {{ post_form.as_p }}
+      <input type="hidden" name="author" value={{ user.profile.id }}>
+      <input class="createPost_submit" type="submit" value="Add Post">
+    </form>
+  </section>
+{% endblock %}

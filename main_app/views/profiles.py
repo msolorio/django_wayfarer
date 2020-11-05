@@ -3,15 +3,13 @@ from django.contrib.auth.decorators import login_required
 from ..models import Profile
 
 @login_required
-def detail(request):
-    profile = request.user.profile
-    user = request.user
+def my_profile(request):
+    return redirect('profiles_detail', request.user.profile.id)
 
-    return render(request, 'profiles/detail.html', {
-        'profile': profile,
-        'user': user,
-        'current_city': profile.city or 'Current City Not Selected'
-    })
+def detail(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+
+    return render(request, 'profiles/detail.html', { 'profile': profile })
 
 def update_profile_city(request):
     profile_id = request.POST['profile_id']

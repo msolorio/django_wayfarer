@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from ..models import City, Post
-from ..forms import PostForm
 
 @login_required
 def index(request):
@@ -22,13 +21,10 @@ def detail(request, city_id):
     selected_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city_id)
 
-    post_form = PostForm()
-
     return render(request, 'cities/detail.html', {
         'profile': profile,
         'cities': cities,
         'selected_city': selected_city,
-        'selected_city_fullname': f'{selected_city.name}, {selected_city.country}',
-        'post_form': post_form,
+        'selected_city_fullname': selected_city.getFullName(),
         'posts': posts
     })

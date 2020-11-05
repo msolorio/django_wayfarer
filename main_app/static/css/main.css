@@ -76,7 +76,6 @@ body {
 .createPost {
   border: 1px solid #333;
   padding: 10px;
-  display: none;
 }
 
 .createPost_open {
@@ -105,5 +104,20 @@ body {
 .posts_postTitle {
   margin-bottom: 5px;
 }
+/**************************************************************/
 
+
+/* POST (see a single post) ***********************************/
+.post {
+  border: 1px solid #333;
+  padding: 20px 20px 10px;
+}
+
+.post_title,
+.post_city,
+.post_author,
+.post_pubdate,
+.post_body {
+  margin-bottom: 10px;
+}
 /**************************************************************/

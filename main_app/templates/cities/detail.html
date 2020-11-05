@@ -42,29 +42,22 @@
       />
     {% endif %}
 
-    {% if profile.city_id == selected_city.id %}
-      <section id="create-post-container" class="createPost">
-        <form class="createPost_form" action="{% url 'create_post' %}" method="POST">
-          {% csrf_token %}
-          <h2>Create Your Post</h2>
-          {{ post_form.as_p }}
-          <input type="hidden" name="author" value={{ profile.id }}>
-          <input type="hidden" name="city" value={{ selected_city.id }}>
-          <input class="createPost_submit" type="submit" value="Add Post">
-        </form>
-        <button class="createPost_close" id="close-create-post">Close</button>
-      </section>
-      <button class="createPost_open" id="open-create-post">Create a Post</button>
-    {% endif %}
-
     <section class="posts">
+      {% if profile.city_id == selected_city.id %}
+        <a class="posts_createPost" href="{% url 'create_post' selected_city.id %}">
+          Create a Post
+        </a>
+      {% endif %}
+
       <h2 class="posts_heading">Posts</h2>
       <ul class="posts_list">
         {% for post in posts %}
-          <li class="posts_post">
-            <h3 class="posts_postTitle">{{ post.title }}</h3>
-            <p class="posts_postBody">{{ post.body }}</p>
-          </li>
+          <a href="{% url 'posts_detail' post.id %}">
+            <li class="posts_post">
+              <h3 class="posts_postTitle">{{ post.title }}</h3>
+              <p class="posts_postBody">{{ post.body }}</p>
+            </li>
+          </a>
         {% endfor %}
       </ul>
     </section>
