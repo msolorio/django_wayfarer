@@ -7,5 +7,17 @@
 {% block content %}
   <h1>Username: {{ user.username }}</h1>
   <p>Current City: {{ profile.city.getFullName }}</p>
+  {% if profile.img_url %}
+    <img src="{{ profile.img_url }}" alt="{{ user.username }}" />
+  {% endif %}
   <p>Join Date: {{ profile.join_date }}</p>
+  {% if profile.email %}
+    <p>Email: {{profile.email}}</p>
+  {% endif %}
+
+  {% if profile.bio %}
+    <p>Bio: {{profile.bio}}</p>
+  {% endif %}
+
+  <a href="{% url 'profiles_edit' %}"><button>Edit Profile</button></a>
 {% endblock %}

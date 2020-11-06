@@ -25,7 +25,7 @@
     
     {% if profile.city_id != selected_city.id %}
       <section>
-        <form action="{% url 'update_profile_city' %}" method="POST">
+        <form action="{% url 'profiles_update_city' %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="selected_city_id" value="{{ selected_city.id }}">
           <input type="hidden" name="profile_id" value="{{ profile.id }}">

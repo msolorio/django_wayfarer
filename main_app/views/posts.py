@@ -12,7 +12,6 @@ def detail(request, post_id):
 
 
 def create_post(request, city_id):
-    print('in create post')
     selected_city = City.objects.get(id=city_id)
     profile = request.user.profile
     post_form = PostForm()

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  [Actual Username]
+{% endblock %}
+
+{% block content %}
+  <section class="editProfile">
+    <form action="{% url 'profiles_update' %}" method="POST" class="editProfile_form">
+      {% csrf_token %}
+      {{ profile_form.as_p }}
+      <input type="submit" value="Submit Changes">
+    </form>
+
+    <a href="{% url 'profiles_detail' 0 %}"><button>View Profile</button></a>
+  </section>
+
+  {% comment %} <h1>Username: {{ user.username }}</h1>
+  <p>Current City: {{ profile.city.getFullName }}</p>
+  {% if profile.img_url %}
+    <img src="{{ profile.img_url }}" alt="{{ user.username }}" />
+  {% endif %}
+  <p>Join Date: {{ profile.join_date }}</p>
+  {% if profile.email %}
+    <p>Email: {{profile.email}}</p>
+  {% endif %}
+
+  <a href="{% url 'profiles_edit' %}"><button></button></a> {% endcomment %}
+{% endblock %}

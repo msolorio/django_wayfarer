@@ -26,7 +26,7 @@
         {% else %}
           <li class="nav_li"><a class="nav_a" href="{% url 'cities_index' %}">Cities</a></li>
           {% comment %} /profile/profile_id {% endcomment %}
-          <li class="nav_li"><a class="nav_a" href="{% url 'my_profile' %}">Profile</a></li>
+          <li class="nav_li"><a class="nav_a" href="{% url 'profiles_detail' 0 %}">Profile</a></li>
           <li class="nav_li"><a class="nav_a" href="{% url 'logout' %}">Log Out</a></li>
         {% endif %}
       </ul>

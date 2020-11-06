@@ -13,6 +13,11 @@ class Profile(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
     )
+    email = models.CharField(max_length=200, default='', blank=True)
+    img_url = models.CharField(max_length=500, default='', blank=True)
+    bio = models.TextField(max_length=1000, default='', blank=True)
 
     def __str__(self):
         return f'user_id: {self.user.id}'
+
+    # def get_dict()
